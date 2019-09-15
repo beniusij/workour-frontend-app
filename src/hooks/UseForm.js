@@ -1,3 +1,8 @@
+/**
+* Kindly borrowed from 
+* https://hackernoon.com/react-form-validation-using-react-hooks-5859c32280ca
+*/
+
 import { useState, useEffect, useCallback } from 'react'
 import variables from '../styles/variables.scss'
 
@@ -15,7 +20,6 @@ function useForm(stateSchema, validationSchema = {}, callback) {
 	// To be able to disable the button 
 	useEffect(() => {
 		if (isDirty) {
-			console.log(validateState())
 			setDisable(validateState())
 		}
 	}, [state, isDirty])
