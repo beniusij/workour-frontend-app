@@ -2,15 +2,16 @@ import React from 'react'
 import styles from './InputField.module.scss'
 
 const MandatoryInputField = (props) => {
-	let name = props.name + "*"
+	const label = props.name + "*"
+	const name = props.name.replace(/\s/g, '').toLowerCase()
 	return (
 		<div className={styles.formControl}>
-			<label htmlFor={props.name}>{name}</label>
+			<label htmlFor={name}>{label}</label>
 			<input 
 				type={props.type} 
-				name={(props.name).toLowerCase()} 
+				name={name} 
 				className={styles.input}
-				onChange={props.function}
+				onBlur={props.function}
 				required
 			/>
 		</div>
