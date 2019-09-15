@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Button from '../button/Button.js'
-import MandatoryInputField from '../field/MandatoryInputField.js'
-import styles from './LoginForm.module.scss'
+import InputField from '../field/InputField.js'
+import styles from './Form.module.scss'
 
 class LoginForm extends Component {
 	constructor(props) {
@@ -32,14 +32,14 @@ class LoginForm extends Component {
 	render () {
 		return (
 			<div className={styles.formContainer} >
-		    	<h2 className={styles.formTitle}>Login</h2>
+		    	<h2 className={styles.formTitle}>Sign In</h2>
 		    	<form onSubmit={this.handleSubmit}>
-			    	<MandatoryInputField 
+			    	<InputField 
 			    		name="Email" 
 			    		type="email" 
 			    		function={this.handleChange} 
 			    	/>
-			    	<MandatoryInputField 
+			    	<InputField 
 			    		name="Password" 
 			    		type="password"
 			    		function={this.handleChange} 
