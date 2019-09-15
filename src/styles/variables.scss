@@ -1,3 +1,13 @@
 $light-gray: #f9f9f9;
 $white: #ffffff;
 $black: #000;
+$success: #0ee600;
+$error: #ec7f7f;
+
+:export {
+	lightgray: $light-gray;
+	white: $white;
+	black: $black;
+	success: $success;
+	error: $error;
+}
