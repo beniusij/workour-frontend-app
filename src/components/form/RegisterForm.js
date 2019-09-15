@@ -31,7 +31,7 @@ function RegisterForm() {
 		email: {
 			required: true,
 			validator: {
-				regEx: /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+				regEx: /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+.)+[^<>()[\].,;:\s@"]{2,})$/i,
 				error: 'Invalid email address',
 			},
 		},
@@ -51,8 +51,8 @@ function RegisterForm() {
 		},
 	}
 
-	const onSubmitForm = (state) => {
-		alert(JSON.stringify(state, null, 2))
+	const onSubmitForm = event => {
+		alert(JSON.stringify(event, null, 2))
 	}
 
 	const { state, disable, handleOnChange, handleOnSubmit } = useForm(
@@ -69,26 +69,31 @@ function RegisterForm() {
 	    			name="First Name"
 	    			type="text"
 	    			function={handleOnChange} 
+	    			error={state.firstname.error}
 	    		/>
 	    		<MandatoryInputField
 	    			name="Last Name"
 	    			type="text"
 	    			function={handleOnChange} 
+	    			error={state.lastname.error}
 	    		/>
 		    	<MandatoryInputField 
 		    		name="Email" 
 		    		type="email" 
 		    		function={handleOnChange} 
+		    		error={state.email.error}
 		    	/>
 		    	<MandatoryInputField 
 		    		name="Password" 
 		    		type="password"
 		    		function={handleOnChange} 
+		    		error={state.password.error}
 		    	/>
 		    	<MandatoryInputField 
 		    		name="Confirm Password" 
 		    		type="password"
 		    		function={handleOnChange} 
+		    		error={state.confirmpassword.error}
 		    	/>
 		      <Button type={'submit'} text={'Sign In'} disabled={disable} />
 	    	</form>
