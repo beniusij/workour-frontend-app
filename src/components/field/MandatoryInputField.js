@@ -14,6 +14,10 @@ const MandatoryInputField = (props) => {
 				onBlur={props.function}
 				required
 			/>
+			{
+				props.error.length > 0 &&
+				<p className={styles.error}>{props.error}</p>
+			}
 		</div>
 	)
 }

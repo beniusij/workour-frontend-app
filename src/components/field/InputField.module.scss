@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .formControl {
 	margin-bottom: 5px;
 }
@@ -8,4 +10,10 @@
 
 .label {
 	margin-bottom: 5px;
+}
+
+.error {
+	color: $error;
+	font-size: 14px;
+	margin: 0;
 }
