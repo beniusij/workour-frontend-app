@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react'
 import variables from '../styles/variables.scss'
 
 function useForm(stateSchema, validationSchema = {}, callback) {
@@ -15,12 +15,13 @@ function useForm(stateSchema, validationSchema = {}, callback) {
 	// To be able to disable the button 
 	useEffect(() => {
 		if (isDirty) {
-			setDisable(validateState());
+			console.log(validateState())
+			setDisable(validateState())
 		}
 	}, [state, isDirty])
 
 	// Disable button if there is an error in state
-	const validateState = useCallback(() =>{
+	const validateState = useCallback(() => {
 		const hasErrorInState = Object.keys(validationSchema).some(key => {
 			const isInputFieldRequired = validationSchema[key].required
 			const stateValue = state[key].value
@@ -28,6 +29,8 @@ function useForm(stateSchema, validationSchema = {}, callback) {
 
 			return (isInputFieldRequired && !stateValue) || stateError
 		})
+
+		return hasErrorInState
 	}, [state, validationSchema])
 
 	// Handle every change in every input
@@ -65,15 +68,13 @@ function useForm(stateSchema, validationSchema = {}, callback) {
 		}))
 	}, [validationSchema])
 
-	const handleOnSubmit = useCallback(
-		event => {
-			event.preventDefault()
+	const handleOnSubmit = useCallback(event => {
+		event.preventDefault()
 
-			if (!validateState()) {
-				callback(state)
-			}
-		}, [state]
-	)
+		if (!validateState()) {
+			callback(state)
+		}
+	})
 
 	return { state, disable, handleOnChange, handleOnSubmit }
 }

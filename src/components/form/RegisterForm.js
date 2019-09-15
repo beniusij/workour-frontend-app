@@ -55,7 +55,7 @@ function RegisterForm() {
 		alert(JSON.stringify(state, null, 2))
 	}
 
-	const { state, handleOnChange, handleOnSubmit, disable } = useForm(
+	const { state, disable, handleOnChange, handleOnSubmit } = useForm(
 		stateSchema,
 		validationStateSchema,
 		onSubmitForm
