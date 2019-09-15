@@ -1,0 +1,8 @@
+@import '../../styles/variables.scss';
+
+.navContainer {
+	padding: 10px 20px;
+	display: flex;
+	justify-content: flex-end;
+	background-color: $white;
+}

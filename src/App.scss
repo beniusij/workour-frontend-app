@@ -1,0 +1,11 @@
+@import './styles/typography.scss';
+@import './styles/variables.scss';
+
+div#root {
+	min-height: 100vh;
+	background-color: $light-gray;
+}
+
+form {
+	margin: 0;
+}

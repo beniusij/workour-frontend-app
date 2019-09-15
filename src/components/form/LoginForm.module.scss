@@ -1,0 +1,22 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mediaQueries.scss';
+
+.formContainer {
+	width: 300px;
+	padding: 10px;
+	background-color: $white;
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	@include respond-to(tablet) {
+		padding: 20px;
+		width: 350px;
+	}
+}
+
+.formTitle {
+	text-align: center;
+}
