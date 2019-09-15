@@ -4,16 +4,42 @@
 	margin-bottom: 5px;
 }
 
+.formControlCheckbox {
+	height: 25px;
+	margin-bottom: 5px;
+}
+
 .input {
 	width: 100%;
+	
+	&:focus {
+		border-color: $input-focus !important;
+	}	
+}
+
+.checkbox {
+	float: left;
+	margin: 7px 10px 7px 0;
 }
 
 .label {
 	margin-bottom: 5px;
 }
 
+.labelCheckbox {
+	margin-bottom: 0;
+	float: left;
+}
+
 .error {
 	color: $error;
 	font-size: 14px;
 	margin: 0;
+}
+
+.errorCheckbox {
+	color: $error;
+	font-size: 14px;
+	margin-bottom: 5px;
+	float: left;
 }

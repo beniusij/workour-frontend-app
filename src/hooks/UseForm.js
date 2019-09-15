@@ -54,7 +54,14 @@ function useForm(stateSchema, validationSchema = {}, callback) {
 					validationSchema[name].validator !== null &&
 					typeof validationSchema[name].validator === 'object'
 				) {
-					if (value && !validationSchema[name].validator.regEx.test(value)) {
+					if (
+							value && 
+							typeof validationSchema[name].validator.regEx != 'undefined' &&
+							!validationSchema[name].validator.regEx.test(value)
+						) {
+						error = validationSchema[name].validator.error
+						event.target.style.borderColor = variables.error
+					} else if(event.target.checked != validationSchema[name].validator.checked) {
 						error = validationSchema[name].validator.error
 						event.target.style.borderColor = variables.error
 					} else {
