@@ -61,7 +61,7 @@ function useForm(stateSchema, validationSchema = {}, callback) {
 						) {
 						error = validationSchema[name].validator.error
 						event.target.style.borderColor = variables.error
-					} else if(event.target.checked != validationSchema[name].validator.checked) {
+					} else if(event.target.checked !== validationSchema[name].validator.checked) {
 						error = validationSchema[name].validator.error
 						event.target.style.borderColor = variables.error
 					} else {
