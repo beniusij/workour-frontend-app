@@ -10,7 +10,7 @@ const MandatoryCheckboxField = (props) => {
 				type={props.type} 
 				name={name} 
 				className={styles.checkbox}
-				onBlur={props.function}
+				onChange={props.function}
 				required
 			/>
 			<label htmlFor={name} className={styles.labelCheckbox}>{label}</label>
