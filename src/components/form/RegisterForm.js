@@ -2,6 +2,7 @@ import React from 'react'
 import useForm from '../../hooks/UseForm.js'
 import Button from '../button/Button.js'
 import MandatoryInputField from '../field/MandatoryInputField.js'
+import MandatoryCheckboxField from '../field/MandatoryCheckboxField.js'
 import styles from './Form.module.scss'
 
 function RegisterForm() {
@@ -11,6 +12,7 @@ function RegisterForm() {
 		email: { value: '', error: '' },
 		password: { value: '', error: '' },
 		confirmpassword: { value: '', error: '' },
+		termsandconditions: { value: '', error: '' },
 	}
 
 	const validationStateSchema = {
@@ -18,37 +20,44 @@ function RegisterForm() {
 			required: true,
 			validator: {
 				regEx: /^[a-zA-Z]+$/,
-				error: 'Invalid first name format',
+				error: 'Invalid first name format.',
 			},
 		},
 		lastname: {
 			required: true,
 			validator: {
 				regEx: /^[a-zA-Z]+$/,
-				error: 'Invalid first name format',
+				error: 'Invalid first name format.',
 			},
 		},
 		email: {
 			required: true,
 			validator: {
 				regEx: /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+.)+[^<>()[\].,;:\s@"]{2,})$/i,
-				error: 'Invalid email address',
+				error: 'Invalid email address.',
 			},
 		},
 		password: {
 			required: true,
 			validator: {
 				regEx: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
-				error: 'Invalid password. It must be minimum of 8 chars, contain a number, upper case & lower case characters',
+				error: 'Invalid password. It must be minimum of 8 chars, contain a number, upper case & lower case characters.',
 			},
 		},
 		confirmpassword: {
 			required: true,
 			validator: {
 				regEx: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
-				error: 'Invalid password. It must be minimum of 8 chars, contain a number, upper case & lower case characters',
+				error: 'Invalid password. It must be minimum of 8 chars, contain a number, upper case & lower case characters.',
 			},
 		},
+		termsandconditions: {
+			required: true,
+			validator: {
+				checked: true,
+				error: 'User must accept our terms and conditions to proceed with registration.'
+			}
+		}
 	}
 
 	const onSubmitForm = event => {
@@ -94,6 +103,12 @@ function RegisterForm() {
 		    		type="password"
 		    		function={handleOnChange} 
 		    		error={state.confirmpassword.error}
+		    	/>
+		    	<MandatoryCheckboxField
+		    		name="Terms and Conditions"
+		    		type="checkbox"
+		    		function={handleOnChange}
+		    		error={state.termsandconditions.error}
 		    	/>
 		      <Button type={'submit'} text={'Sign In'} disabled={disable} />
 	    	</form>
