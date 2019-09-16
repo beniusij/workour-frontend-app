@@ -45,25 +45,31 @@ function useForm(stateSchema, validationSchema = {}, callback) {
 		const value = event.target.value
 
 		let error = ''
+		
 		if (validationSchema[name].required) {
-			if (!value) {
+			if (!value || value.length <= 0) {
 				error = 'This is required field.'
 				event.target.style.borderColor = variables.error
-			} else {
+			} else if (
+				validationSchema[name].validator !== null &&
+				typeof validationSchema[name].validator === 'object'
+			) {
 				if (
-					validationSchema[name].validator !== null &&
-					typeof validationSchema[name].validator === 'object'
+					typeof validationSchema[name].validator.checked !== 'undefined' &&
+					event.target.checked !== validationSchema[name].validator.checked
 				) {
-					if (value && !validationSchema[name].validator.regEx.test(value)) {
-						error = validationSchema[name].validator.error
-						event.target.style.borderColor = variables.error
-					} else {
-						event.target.style.borderColor = variables.success
-					}
+					error = validationSchema[name].validator.error
+					event.target.style.borderColor = variables.error
+				} else if (
+					typeof validationSchema[name].validator.regEx !== 'undefined' &&
+					!validationSchema[name].validator.regEx.test(value)
+				) {
+					error = validationSchema[name].validator.error
+					event.target.style.borderColor = variables.error
+				} else {
+					event.target.style.borderColor = variables.success
 				}
 			}
-		} else {
-			event.target.style.borderColor = variables.success
 		}
 
 		setState(prevState => ({
