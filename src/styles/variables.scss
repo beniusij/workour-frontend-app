@@ -1,12 +1,18 @@
 $light-gray: #f9f9f9;
-$white: #ffffff;
-$black: #000;
+$medium-gray: #b9b9b9;
+$dark-gray: #696969;
+
+$white: #fff;
+$black: #525252;
+$pitch-black: #000;
+$input-focus: #b1d3f7;
+
 $success: #0ee600;
 $error: #f95151;
-$input-focus: #b1d3f7;
 
 :export {
 	lightgray: $light-gray;
+	darkgray: $dark-gray;
 	white: $white;
 	black: $black;
 	success: $success;

@@ -1,5 +1,19 @@
+@import '../../styles/variables.scss';
+
 .btn {
     padding: 5px 20px;
     border-radius: 5px;
     background-color: transparent;
+
+    &:hover, &:focus {
+        background-color: $black;
+        color: $white;
+        border-color: $black;
+    }
+
+    &[disabled] {
+        background-color: $light-gray;
+        color: $medium-gray;
+        border-color: $medium-gray;
+    }
 }
