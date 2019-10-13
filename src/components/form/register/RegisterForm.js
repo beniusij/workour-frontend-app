@@ -1,9 +1,10 @@
 import React from 'react'
-import useForm from '../../hooks/UseForm.js'
-import Button from '../button/Button.js'
-import MandatoryInputField from '../field/MandatoryInputField.js'
-import MandatoryCheckboxField from '../field/MandatoryCheckboxField.js'
-import styles from './Form.module.scss'
+import useForm from '../../../hooks/UseForm.js'
+import Button from '../../button/Button.js'
+import MandatoryInputField from '../../field/MandatoryInputField.js'
+import MandatoryCheckboxField from '../../field/MandatoryCheckboxField.js'
+import RegisterFormMutation from './RegisterFormMutation'
+import styles from '../Form.module.scss'
 
 function RegisterForm() {
 	const stateSchema = {
