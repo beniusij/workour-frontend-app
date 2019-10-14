@@ -9,8 +9,9 @@ function fetchQuery(
   operation,
   variables
 ) {
-  return fetch('/graphql', {
+  return fetch('http://localhost:8080/graphql', {
     method: 'POST',
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
     },

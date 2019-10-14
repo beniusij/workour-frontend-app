@@ -5,6 +5,7 @@ import MandatoryInputField from '../../field/MandatoryInputField.js'
 import MandatoryCheckboxField from '../../field/MandatoryCheckboxField.js'
 import RegisterFormMutation from './RegisterFormMutation'
 import styles from '../Form.module.scss'
+import environment from '../../../environment'
 
 function RegisterForm() {
 	const stateSchema = {
@@ -62,7 +63,10 @@ function RegisterForm() {
 	}
 
 	const onSubmitForm = event => {
-		alert(JSON.stringify(event, null, 2))
+		RegisterFormMutation.commit(
+			environment,
+			event,
+		)
 	}
 
 	const { state, disable, handleOnChange, handleOnSubmit } = useForm(
