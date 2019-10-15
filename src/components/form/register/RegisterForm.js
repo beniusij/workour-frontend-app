@@ -63,9 +63,17 @@ function RegisterForm() {
 	}
 
 	const onSubmitForm = event => {
+		const formInput = {
+			first_name: event.firstname.value,
+			last_name: event.lastname.value,
+			email: event.email.value,
+			password: event.password.value,
+			password_confirm: event.confirmpassword.value
+		}
+
 		RegisterFormMutation.commit(
 			environment,
-			event,
+			formInput,
 		)
 	}
 
