@@ -4,8 +4,18 @@ import Button from '../button/Button.js'
 import MandatoryInputField from '../field/MandatoryInputField.js'
 import MandatoryCheckboxField from '../field/MandatoryCheckboxField.js'
 import styles from './Form.module.scss'
+import {gql} from "apollo-boost"
+import { Mutation } from 'react-apollo'
 
 function RegisterForm() {
+	const registerMutation = gql`
+		mutation RegisterMutation($first_name: String!, $last_name: String!, $email: String!, $password: String!, $password_confirm: String!) {
+			register(first_name: $first_name, last_name: $last_name, email: $email, password: $password, password_confirm: $password_confirm) {
+				id
+			}
+		}
+	`
+
 	const stateSchema = {
 		firstname: { value: '', error: '' },
 		lastname: { value: '', error: '' },
@@ -61,7 +71,7 @@ function RegisterForm() {
 	}
 
 	const onSubmitForm = event => {
-		alert(JSON.stringify(event, null, 2))
+		return event.firstname, event.lastname, event.email, event.password, event.confirmpassword
 	}
 
 	const { state, disable, handleOnChange, handleOnSubmit } = useForm(
@@ -73,45 +83,50 @@ function RegisterForm() {
 	return (
 		<div className={styles.formContainer} >
 	    	<h2 className={styles.formTitle}>Sign Up</h2>
-	    	<form onSubmit={handleOnSubmit}>
-	    		<MandatoryInputField
-	    			name="First Name"
-	    			type="text"
-	    			function={handleOnChange} 
-	    			error={state.firstname.error}
-	    		/>
-	    		<MandatoryInputField
-	    			name="Last Name"
-	    			type="text"
-	    			function={handleOnChange} 
-	    			error={state.lastname.error}
-	    		/>
-		    	<MandatoryInputField 
-		    		name="Email" 
-		    		type="email" 
-		    		function={handleOnChange} 
-		    		error={state.email.error}
-		    	/>
-		    	<MandatoryInputField 
-		    		name="Password" 
-		    		type="password"
-		    		function={handleOnChange} 
-		    		error={state.password.error}
-		    	/>
-		    	<MandatoryInputField 
-		    		name="Confirm Password" 
-		    		type="password"
-		    		function={handleOnChange} 
-		    		error={state.confirmpassword.error}
-		    	/>
-		    	<MandatoryCheckboxField
-		    		name="Terms and Conditions"
-		    		type="checkbox"
-		    		function={handleOnChange}
-		    		error={state.termsandconditions.error}
-		    	/>
-		      <Button type={'submit'} text={'Sign In'} disabled={disable} />
-	    	</form>
+				<Mutation
+					mutation={registerMutation}
+					variables={{ }}
+				>
+					<form onSubmit={handleOnSubmit}>
+						<MandatoryInputField
+							name="First Name"
+							type="text"
+							function={handleOnChange}
+							error={state.firstname.error}
+						/>
+						<MandatoryInputField
+							name="Last Name"
+							type="text"
+							function={handleOnChange}
+							error={state.lastname.error}
+						/>
+						<MandatoryInputField
+							name="Email"
+							type="email"
+							function={handleOnChange}
+							error={state.email.error}
+						/>
+						<MandatoryInputField
+							name="Password"
+							type="password"
+							function={handleOnChange}
+							error={state.password.error}
+						/>
+						<MandatoryInputField
+							name="Confirm Password"
+							type="password"
+							function={handleOnChange}
+							error={state.confirmpassword.error}
+						/>
+						<MandatoryCheckboxField
+							name="Terms and Conditions"
+							type="checkbox"
+							function={handleOnChange}
+							error={state.termsandconditions.error}
+						/>
+							<Button type={'submit'} text={'Sign In'} disabled={disable} />
+					</form>
+				</Mutation>
 	    	
 		</div>
 	)
