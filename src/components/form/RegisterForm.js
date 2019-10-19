@@ -3,6 +3,7 @@ import useForm from '../../hooks/UseForm.js'
 import Button from '../button/Button.js'
 import MandatoryInputField from '../field/MandatoryInputField.js'
 import MandatoryCheckboxField from '../field/MandatoryCheckboxField.js'
+import Notification from '../notification/Notification'
 import styles from './Form.module.scss'
 import {gql} from "apollo-boost"
 import { useMutation } from '@apollo/react-hooks'
@@ -70,7 +71,7 @@ function RegisterForm() {
     }
   `
 
-  const [register, { data }] = useMutation(registerMutation)
+  const [register, { loading }] = useMutation(registerMutation)
 
   const onSubmitForm = event => {
     register({
@@ -130,7 +131,8 @@ function RegisterForm() {
             function={handleOnChange}
             error={state.termsandconditions.error}
           />
-          <Button type={'submit'} text={'Sign In'} disabled={disable} />
+          <Notification message={'Sorry! An error occurred while processing your request. Please, try again later.'} />
+          <Button type={'submit'} text={loading ? 'Loading...' : 'Sign Up'} disabled={disable} />
         </form>
     </div>
   )

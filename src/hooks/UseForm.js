@@ -49,7 +49,7 @@ function useForm(stateSchema, validationSchema = {}, callback) {
 		if (validationSchema[name].required) {
 			if (!value || value.length <= 0) {
 				error = 'This is required field.'
-				event.target.style.borderColor = variables.error
+				event.target.style.borderColor = variables.invalid
 			} else if (
 				validationSchema[name].validator !== null &&
 				typeof validationSchema[name].validator === 'object'
@@ -59,15 +59,15 @@ function useForm(stateSchema, validationSchema = {}, callback) {
 					event.target.checked !== validationSchema[name].validator.checked
 				) {
 					error = validationSchema[name].validator.error
-					event.target.style.borderColor = variables.error
+					event.target.style.borderColor = variables.invalid
 				} else if (
 					typeof validationSchema[name].validator.regEx !== 'undefined' &&
 					!validationSchema[name].validator.regEx.test(value)
 				) {
 					error = validationSchema[name].validator.error
-					event.target.style.borderColor = variables.error
+					event.target.style.borderColor = variables.invalid
 				} else {
-					event.target.style.borderColor = variables.success
+					event.target.style.borderColor = variables.valid
 				}
 			}
 		}

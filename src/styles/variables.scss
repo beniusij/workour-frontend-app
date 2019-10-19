@@ -7,14 +7,22 @@ $black: #525252;
 $pitch-black: #000;
 $input-focus: #b1d3f7;
 
-$success: #0ee600;
-$error: #f95151;
+$success-print: #077500;
+$success-background: #c9f5c6;
+$failure-print: #8c0d0d;
+$failure-background: #ffdfdf;
+$valid: #07c600;
+$invalid: #f95151;
 
 :export {
 	lightgray: $light-gray;
 	darkgray: $dark-gray;
 	white: $white;
 	black: $black;
-	success: $success;
-	error: $error;
+	success-print: $success-print;
+	success-background: $success-background;
+	failure-print: $failure-print;
+	failure-background: $failure-background;
+	valid: $valid;
+	invalid: $invalid;
 }

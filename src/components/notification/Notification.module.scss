@@ -1,0 +1,25 @@
+@import '../../styles/variables.scss';
+
+@mixin message-box {
+  margin: 10px auto;
+  padding: 10px 20px;
+  width: fit-content;
+
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+
+.success {
+  @include message-box;
+
+  color: $success-print;
+  background-color: $success-background;
+}
+
+.failure {
+  @include message-box;
+
+  color: $failure-print;
+  background-color: $failure-background;
+}
