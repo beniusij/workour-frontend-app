@@ -12,7 +12,7 @@ import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:8080'
+  uri: 'http://localhost:8080/graphql'
 })
 const client = new ApolloClient({
   link: httpLink,
@@ -20,11 +20,11 @@ const client = new ApolloClient({
 })
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <BrowserRouter>
+  <BrowserRouter>
+    <ApolloProvider client={client}>
       <App />
-    </BrowserRouter>
-  </ApolloProvider>,
+    </ApolloProvider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
