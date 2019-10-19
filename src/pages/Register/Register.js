@@ -5,7 +5,7 @@ import styles from './Register.module.scss'
 const Register = props => {
 	return (
 		<div className={styles.page}>
-			<RegisterForm />
+			<RegisterForm history={props.history} />
 		</div>
 	)
 }

@@ -8,7 +8,7 @@ import styles from './Form.module.scss'
 import {gql} from "apollo-boost"
 import { useMutation } from '@apollo/react-hooks'
 
-function RegisterForm() {
+function RegisterForm(props) {
   const stateSchema = {
     firstname: { value: '', error: '' },
     lastname: { value: '', error: '' },
@@ -71,7 +71,16 @@ function RegisterForm() {
     }
   `
 
-  const [register, { loading }] = useMutation(registerMutation)
+  const onComplete = () => {
+    props.history.push('/signin')
+  }
+
+  const [register, { loading, error }] = useMutation(
+    registerMutation,
+    {
+      onCompleted: onComplete
+    }
+  )
 
   const onSubmitForm = event => {
     register({
@@ -131,7 +140,10 @@ function RegisterForm() {
             function={handleOnChange}
             error={state.termsandconditions.error}
           />
-          <Notification message={'Sorry! An error occurred while processing your request. Please, try again later.'} />
+          {
+            typeof error !== 'undefined' &&
+            <Notification message={'Sorry! An error occurred while processing your request. Please, try again later.'} />
+          }
           <Button type={'submit'} text={loading ? 'Loading...' : 'Sign Up'} disabled={disable} />
         </form>
     </div>
