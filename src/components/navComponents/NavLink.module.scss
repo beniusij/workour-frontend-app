@@ -1,0 +1,27 @@
+@import '../../styles/variables.scss';
+
+@mixin navElement {
+	font-size: 14px;
+	padding: 5px 10px;
+	text-decoration: none;
+	color: $black;
+	transition: all .1s ease-in-out;
+	text-align: center;
+
+	&:hover {
+		color: $link-highlight;
+		transform: scale(1.1);
+	}
+}
+
+.navLink {
+	@include navElement
+}
+
+.navButton {
+	border: none;
+	height: auto;
+	letter-spacing: normal;
+
+	@include navElement
+}

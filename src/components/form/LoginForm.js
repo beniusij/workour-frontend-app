@@ -1,55 +1,37 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Button from '../button/Button.js'
 import InputField from '../field/InputField.js'
 import styles from './Form.module.scss'
+import Notification from "../notification/Notification";
+import {AuthConsumer} from "../../context/Auth/AuthConsumer";
 
-class LoginForm extends Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			email: '',
-			password: ''
-		}
+function LoginForm() {
+  return (
+    <AuthConsumer>
+      {({ authenticate, loading, errMsg}) => (
+        <div className={styles.formContainer} >
+          <h2 className={styles.formTitle}>Sign In</h2>
 
-		this.handleChange = this.handleChange.bind(this)
-		this.handleSubmit = this.handleSubmit.bind(this)
-	}
+          {
+            errMsg &&
+            <Notification message={errMsg} />
+          }
 
-	handleChange(event) {
-		const target = event.target
-		const value = target.value
-		const name = target.name
-
-		this.setState({
-			[name]: value
-		})
-	}
-
-	handleSubmit(event) {
-		event.preventDefault()
-	}
-
-	render () {
-		return (
-			<div className={styles.formContainer} >
-		    	<h2 className={styles.formTitle}>Sign In</h2>
-		    	<form onSubmit={this.handleSubmit}>
-			    	<InputField 
-			    		name="Email" 
-			    		type="email" 
-			    		function={this.handleChange} 
-			    	/>
-			    	<InputField 
-			    		name="Password" 
-			    		type="password"
-			    		function={this.handleChange} 
-			    	/>
-			      <Button type={'submit'} text={'Sign In'} />
-		    	</form>
-		    	
-  		</div>
-		)
-	}
+          <form onSubmit={authenticate}>
+            <InputField
+              name="Email"
+              type="email"
+            />
+            <InputField
+              name="Password"
+              type="password"
+            />
+            <Button type={'submit'} text={loading ? 'Loading...' : 'Sign In'} />
+          </form>
+        </div>
+      )}
+    </AuthConsumer>
+  )
 }
 
 export default LoginForm

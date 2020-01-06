@@ -5,7 +5,7 @@ import MandatoryInputField from '../field/MandatoryInputField.js'
 import MandatoryCheckboxField from '../field/MandatoryCheckboxField.js'
 import Notification from '../notification/Notification'
 import styles from './Form.module.scss'
-import {gql} from "apollo-boost"
+import { gql } from "apollo-boost"
 import { useMutation } from '@apollo/react-hooks'
 
 function RegisterForm(props) {

@@ -6,6 +6,7 @@ $white: #fff;
 $black: #525252;
 $pitch-black: #000;
 $input-focus: #b1d3f7;
+$link-highlight: #1EAEDB;
 
 $success-print: #077500;
 $success-background: #c9f5c6;
@@ -25,4 +26,5 @@ $invalid: #f95151;
 	failure-background: $failure-background;
 	valid: $valid;
 	invalid: $invalid;
+	link-highlight: $link-highlight
 }
