@@ -10,7 +10,7 @@ function ProtectedRoute({children, ...rest}) {
           {...rest}
           render={({ location }) =>
             user.isAuth ? (
-              children
+              location
             ) : (
               <Redirect
                 to={{
@@ -25,3 +25,5 @@ function ProtectedRoute({children, ...rest}) {
     </AuthConsumer>
   )
 }
+
+export default ProtectedRoute
