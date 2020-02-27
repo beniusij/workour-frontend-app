@@ -6,15 +6,46 @@ import Notification from "../notification/Notification";
 import {AuthConsumer} from "../../context/Auth/AuthConsumer";
 
 function LoginForm() {
+  const [ error, setError ] = React.useState()
+  const [ loading, setLoading ] = React.useState(false)
+
+  // This is called on login form submit
+  const authenticate = async (event) => {
+    event.preventDefault()
+
+    setLoading(true)
+
+    const loginForm = {
+      email: document.getElementsByName('Email')[0],
+      password: document.getElementsByName('Password')[0]
+    }
+
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
+      method: 'POST',
+      body: loginForm,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    const body = await response.json().then((body) => {
+      if (typeof body.message !== "undefined") {
+        setLoading(false)
+        setError(body.message)
+      }
+    })
+
+  }
+
   return (
     <AuthConsumer>
-      {({ authenticate, loading, errMsg}) => (
+      {() => (
         <div className={styles.formContainer} >
           <h2 className={styles.formTitle}>Sign In</h2>
 
           {
-            errMsg &&
-            <Notification message={errMsg} />
+            error &&
+            <Notification message={error} />
           }
 
           <form onSubmit={authenticate}>
