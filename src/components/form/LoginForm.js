@@ -4,10 +4,14 @@ import InputField from '../field/InputField.js'
 import styles from './Form.module.scss'
 import Notification from "../notification/Notification";
 import {AuthConsumer} from "../../context/Auth/AuthConsumer";
+import isEmpty from "../../helpers/validation";
+import {useHistory} from "react-router-dom";
 
 function LoginForm() {
   const [ error, setError ] = React.useState()
   const [ loading, setLoading ] = React.useState(false)
+  const history = useHistory()
+  const defaultError = "Error occurred. Please, contact site admin."
 
   // This is called on login form submit
   const authenticate = async (event) => {
@@ -16,25 +20,37 @@ function LoginForm() {
     setLoading(true)
 
     const loginForm = {
-      email: document.getElementsByName('Email')[0],
-      password: document.getElementsByName('Password')[0]
+      email: document.getElementsByName('Email')[0].value,
+      password: document.getElementsByName('Password')[0].value
     }
 
+    // TODO update response handling if success/fail
     const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
       method: 'POST',
-      body: loginForm,
+      body: JSON.stringify(loginForm),
       headers: {
         'Content-Type': 'application/json'
       }
-    })
-
-    const body = await response.json().then((body) => {
-      if (typeof body.message !== "undefined") {
-        setLoading(false)
-        setError(body.message)
+    }).then((response) => {
+      if (response.status !== 200) {
+        const body = response.json().then((result) => {
+          if (isEmpty(result.error)) {
+            setError(result.error)
+          } else {
+            setError(defaultError)
+          }
+          
+          setLoading(false)
+        })
+      } else {
+        // TODO update context with authenticated context
+        history.push("/")
       }
+    }).catch((error) => {
+      console.log(error)
+      setError(defaultError)
+      setLoading(false)
     })
-
   }
 
   return (
