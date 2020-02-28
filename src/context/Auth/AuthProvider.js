@@ -70,7 +70,7 @@ export const AuthProvider = (props) => {
   // TODO: refactor so this get called only once after page refresh
   // TODO: potentially move this out and call on login and context init
   getCurrentUser().then((data) => {
-    if (data !== null) {
+    if (data !== null && typeof data.message === "undefined") {
       data.isAuth = true
     } else {
       data = {isAuth: false}
@@ -87,14 +87,13 @@ export const AuthProvider = (props) => {
    * @returns {Promise<void>}
    */
   const logout = async () => {
-    setUser({isAuth: false})
-
     await fetch(`${process.env.REACT_APP_API_URL}/logout`, {
       method: 'POST',
       credentials: 'include'
     }).catch((error) => {
         console.log(error)
       })
+    setUser({isAuth: false})
 
     history.push('/')
   }
