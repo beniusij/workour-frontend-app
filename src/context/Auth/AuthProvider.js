@@ -93,6 +93,7 @@ export const AuthProvider = (props) => {
     }).catch((error) => {
         console.log(error)
       })
+
     setUser({isAuth: false})
 
     history.push('/')
