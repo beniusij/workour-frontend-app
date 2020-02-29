@@ -2,8 +2,8 @@
  * Fetches current user from backend server using the cookie set
  * @returns {Promise<*>}
  */
-export default async function getCurrentUser() {
-  return await fetch(
+export default function getCurrentUser() {
+  return fetch(
     `${process.env.REACT_APP_API_URL}/getCurrentUser`, {
       method: 'GET',
       headers: {
