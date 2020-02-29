@@ -8,13 +8,13 @@ import {AuthConsumer} from "../../context/Auth/AuthConsumer";
 function LoginForm() {
   return (
     <AuthConsumer>
-      {({ authenticate, loading, errMsg}) => (
+      {({error, authenticate, loading}) => (
         <div className={styles.formContainer} >
           <h2 className={styles.formTitle}>Sign In</h2>
 
           {
-            errMsg &&
-            <Notification message={errMsg} />
+            error &&
+            <Notification message={error} />
           }
 
           <form onSubmit={authenticate}>
