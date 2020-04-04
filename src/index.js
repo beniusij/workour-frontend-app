@@ -12,7 +12,7 @@ import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:8080/public'
+  uri: `${process.env.REACT_APP_API_URL}/public`
 })
 const client = new ApolloClient({
   link: httpLink,
