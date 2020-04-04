@@ -3,7 +3,7 @@ import Button from '../button/Button.js'
 import InputField from '../field/InputField.js'
 import styles from './Form.module.scss'
 import Notification from "../notification/Notification";
-import {AuthConsumer} from "../../context/Auth/AuthConsumer";
+import { AuthConsumer } from "../../context/Auth/AuthConsumer";
 
 function LoginForm() {
   return (

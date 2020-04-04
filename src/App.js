@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import NavMenu from "./components/navigation/NavMenu.js";
 import Login from "./pages/Login/Login.js"
 import Register from "./pages/Register/Register.js"
-import Home from "./pages/Dashboard"
+import Home from "./pages/Dashboard/Dashboard"
 import { AuthProvider } from "./context/Auth/AuthProvider";
 import {AuthConsumer} from "./context/Auth/AuthConsumer";
 

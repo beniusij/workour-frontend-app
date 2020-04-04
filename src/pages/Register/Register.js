@@ -1,5 +1,5 @@
 import React from 'react'
-import RegisterForm from '../../components/form/RegisterForm.js'
+import RegisterForm from '../../components/form/RegisterForm.jsx'
 import styles from './Register.module.scss'
 
 const Register = props => {

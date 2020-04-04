@@ -18,6 +18,8 @@ function RegisterForm(props) {
     termsandconditions: { value: '', error: '' },
   }
 
+  const pswRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/
+
   const validationStateSchema = {
     firstname: {
       required: true,
@@ -43,14 +45,14 @@ function RegisterForm(props) {
     password: {
       required: true,
       validator: {
-        regEx: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
+        regEx: pswRegex,
         error: 'Invalid password. It must be minimum of 8 chars, contain a number, upper case & lower case characters.',
       },
     },
     confirmpassword: {
       required: true,
       validator: {
-        regEx: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
+        regEx: pswRegex,
         error: 'Invalid password. It must be minimum of 8 chars, contain a number, upper case & lower case characters.',
       },
     },
@@ -75,10 +77,15 @@ function RegisterForm(props) {
     props.history.push('/signin')
   }
 
+  const onError = (error) => {
+    console.error(error)
+  }
+
   const [register, { loading, error }] = useMutation(
     registerMutation,
     {
-      onCompleted: onComplete
+      onCompleted: onComplete,
+      onError: onError
     }
   )
 

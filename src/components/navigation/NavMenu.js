@@ -1,5 +1,5 @@
 import React from 'react';
-import NavLink from '../navComponents/NavLink.js'
+import NavLink from '../navComponents/NavLink.jsx'
 import styles from './NavMenu.module.scss'
 import { AuthConsumer } from "../../context/Auth/AuthConsumer"
 import NavButton from "../navComponents/navButton";

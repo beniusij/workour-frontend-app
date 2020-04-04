@@ -4,7 +4,8 @@ import {useHistory} from "react-router-dom";
 import getCurrentUser from "../../lib/user";
 import isEmpty from "../../helpers/validation";
 
-const defaultUser = {isAuth: false}
+const defaultUser = { isAuth: false }
+const defaultError = "Error occurred. Please, contact site admin."
 
 /**
  * AuthProvider sets up the context with right state
@@ -18,7 +19,7 @@ export const AuthProvider = (props) => {
   const [ user, setUser ] = React.useState(defaultUser)
   const [ error, setError ] = React.useState()
   const [ loading, setLoading ] = React.useState(false)
-  const defaultError = "Error occurred. Please, contact site admin."
+
   const history = useHistory()
 
   // This is called on login form submit
