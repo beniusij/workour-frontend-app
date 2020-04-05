@@ -1,0 +1,9 @@
+node_modules
+.gitignore
+.git
+Dockerfile
+.env.dist
+.dockerignore
+.idea
+Makefile
+README.md
