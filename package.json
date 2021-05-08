@@ -16,7 +16,7 @@
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
     "graphql": "^14.5.8",
-    "handlebars": "4.5.3",
+    "handlebars": "4.7.7",
     "node-sass": "^4.13.1",
     "path": "^0.12.7",
     "prop-types": "^15.7.2",
